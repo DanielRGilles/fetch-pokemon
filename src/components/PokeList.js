@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../App.css'
 export default class PokeList extends Component {
     render() {
         return (
@@ -7,7 +7,7 @@ export default class PokeList extends Component {
             <ul className='poke-mon'>
 
                 { this.props.pokemons.length === 0
-                ? <h1>Loading!</h1>
+                ? <div><img className='load-ing' src='pokeball.png' alt='pokeball'/></div>
                 : this.props.pokemons.map(pokemon => { return(
                 <li className='pokemon' key={pokemon._id}>
                  <div className='pokemon-neem'>{pokemon.pokemon}</div>  <br></br> 
