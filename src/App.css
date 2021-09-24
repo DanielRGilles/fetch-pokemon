@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 .header-class {
+  display: flex;
   text-align: center;
   font-size: 3rem;
   font-weight: 700;
-  background-color: turquoise;
+  background-color: red;
+  height: 80px;
+  justify-content: center;
+  border: ridge 2px black;
+  align-items: center;
+  margin-bottom: 10px;
 }
 .poke-cnt > form {
   justify-self: center;
+  
 }
 * {
   margin: 0;
+  font-family: 'Press Start 2P', cursive;
 }
 body {
   background-color: lavender;
@@ -17,14 +26,16 @@ body {
 .search-box {
   display: flex;
   justify-content: center;
+  padding: 5px;
 }
-.creature > img {
-  width: auto;
-  height: 50%;
-  border-radius: 5px;
-  border: solid grey 1px;
-  margin-left: 12px;
+
+.search-box > * {
+  padding-left: 25px;
+   width: fit-content;
+   height: fit-content;
+
 }
+
 .pokemon-neem {
   font-size: large;
   text-transform: uppercase;
@@ -40,32 +51,101 @@ body {
 .poke-mon{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  width: 100vw;
+  width: 95vw;
   height: fit-content;
   list-style: none;
   grid-gap: 5px;
+  margin: 0;
 }
 .pokemon {
-  width: 200px;
+  width: fit-content;
   height: fit-content;
+  max-width: 75%;
   border: ridge 1px black;
   justify-self: center;
   margin: 5px;
-  width: 400px;
-  height: 300px;
   background-color: ivory;
+  align-items: center;
+  padding: 15px;
   
+}
+.grass {
+  background-color: lightgreen;
+}
+.fire {
+  background-color: lightsalmon;
+}
+.water {
+  background-color: lightblue;
+}
+.bug {
+  background-color: rgb(247, 247, 37);
+}
+.normal {
+  background-color: lightgrey;
+}
+.steel {
+  background-color: slategray;
+}
+.psychic {
+  background-color: rgb(124, 83, 165);
+}
+.dragon {
+  background-color: rgba(19, 16, 16, 0.705);
+  color: coral;
+}
+.dark {
+  background-color: gold;
+}
+.ground {
+  background-color: brown;
+}
+.ice {
+  background-color: #D6ECEF
+}
+.fighting {
+  background-color: wheat;
+}
+.fairy {
+  background-color: pink;
+}
+.ghost {
+  background-color: lightslategray;
+}
+.flying {
+  background-color: coral;
+}
+.poison {
+  background-color: darkgreen;
+}
+.rock {
+  background-color: rgb(87, 87, 26);
+}
+.electric {
+  background-color: skyblue;
+  font-size: .8rem;
+
+}
+
+
+
+.pokemon > img {
+  justify-content: center;
 }
 .pokemon-deets {
   margin: 1px 5px 1px 5px;
   background-color: white;
   border: ridge 1px black;
-  padding-left: 5px;
+  padding: 5px;
+  font-weight: bold;
+  height: fit-content;
+  
 }
 .poke-pic {
-  width: 150px;
-  height: auto;
-  
+  width: 50%;
+  height: 50%;
+  justify-self: center;
+  margin-left: 25%;
 }
 .load-ing {
   position: fixed;
@@ -75,6 +155,32 @@ body {
   animation: rotation 400ms;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+@media only screen and (max-width: 999px) {
+  .poke-mon  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100vw;
+  }
+  .pokemon {
+    max-width: 25%;
+  }
+  .search-box {
+  width: fit-content;
+  font-size: 50%;
+  }
+  form > input {
+    width: 50%;
+  }
+  .pokemon-deets {
+    font-size: 65%;
+    overflow: hidden;
+  }
+  .pokemon-neem {
+    font-size: .75rem;
+    width: fit-content;
+  }
 }
 @keyframes rotation {
   from {

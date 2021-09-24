@@ -10,11 +10,12 @@ export default class SearchPage extends Component {
        sortOrder: 'asc',
        query: '',
        pokemon: [],
-       pokePerpage: '20'
+       pokePerpage: '20',
+       isLoading: true
    }
  componentDidMount = async () => {
         const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=1&perPage=20`)
-        this.setState({pokemon: response.body.results})
+        this.setState({pokemon: response.body.results, isLoading: false})
     } 
     handleChange = (e) => {
         this.setState({ query: e.target.value });
@@ -30,7 +31,7 @@ export default class SearchPage extends Component {
     handleSubmit = async (e) => {
             e.preventDefault();
             const search = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}page=1&perPage=${this.state.pokePerpage}`)
-            this.setState({ pokemon: search.body.results});
+            this.setState({ pokemon: search.body.results, isLoading: false});
         }
         
     render() {
@@ -48,7 +49,7 @@ export default class SearchPage extends Component {
             <label>Results per page</label>
             <Dropdown  handleChange={this.handleQuantityChange} options={[20, 50, 100, 200]} />
             </section>
-            <PokeList pokemons= {this.state.pokemon} />  
+            <PokeList isLoading={this.state.isLoading} pokemons= {this.state.pokemon} />  
             </main>
         )
     }

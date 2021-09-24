@@ -5,7 +5,7 @@ export default class Header extends Component {
         return (
             <>
              <header className='header-class'>
-                 Find Your Pokemon
+                 PokeDex
                  
             </header>   
             </>
