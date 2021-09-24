@@ -3,6 +3,8 @@ import './App.css';
 import request from 'superagent';
 import PokeList from './components/PokeList';
 import Header from './components/Header';
+import Sort from './components/Sort';
+import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 
 export default class SearchPage extends Component {
@@ -11,28 +13,38 @@ export default class SearchPage extends Component {
        query: '',
        pokemon: [],
        pokePerpage: '20',
-       isLoading: true
+       isLoading: true,
+       typeQ: 'pokemon'
    }
- componentDidMount = async () => {
-        const response = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=1&perPage=20`)
-        this.setState({pokemon: response.body.results, isLoading: false})
+    componentDidMount = async () => {
+         await this.fetchData();
     } 
     handleChange = (e) => {
         this.setState({ query: e.target.value });
+    }
+    handleTypeChange = (e) => {
+        this.setState({ typeQ: e.target.value });
     }
     handleQuantityChange = (e) => {
         this.setState({ pokePerpage: e.target.value});
     }
     handleOrderChange = (e) => {
-        this.setState({ sortOrder: e.target.value });
-        
-    }
-    
+        this.setState({ sortOrder: e.target.value });    
+    } 
+
     handleSubmit = async (e) => {
             e.preventDefault();
-            const search = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?pokemon=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}page=1&perPage=${this.state.pokePerpage}`)
+        await this.fetchData();
+    }
+    handleTypeSubmit = async (e) => {
+            e.preventDefault();
+        await this.fetchData();
+    }  
+    fetchData = async() => {
+            const search = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${this.state.typeQ}=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}page=1&perPage=${this.state.pokePerpage}`)
             this.setState({ pokemon: search.body.results, isLoading: false});
-        }
+    }
+  
         
     render() {
         console.log(this.state.pokemon)
@@ -40,16 +52,11 @@ export default class SearchPage extends Component {
             <main className='poke-cnt'>
               <Header/>
             <section className='search-box'>
-            <form onSubmit={this.handleSubmit}>
-                <input type='text' value={this.state.query} onChange={this.handleChange} />
-                <button>Search</button>
-            </form>
-            <label>Order</label>
-            <Dropdown  handleChange={this.handleOrderChange} options={['desc', 'asc']} />
-            <label>Results per page</label>
-            <Dropdown  handleChange={this.handleQuantityChange} options={[20, 50, 100, 200]} />
+              <Search handleSubmit={this.handleSubmit} placeholder={`Search by ${this.state.typeQ}`} handleChange={this.handleChange} />
+              <Dropdown handleChange={this.handleTypeChange} value={this.state.typeQ} options={['pokemon','type_1',]} />
+              <Sort handleOrderChange={this.handleOrderChange} sortOrder={this.state.sortOrder} pokePerpage={this.state.pokePerpage} handleQuantityChange={this.handleQuantityChange}/>
             </section>
-            <PokeList isLoading={this.state.isLoading} pokemons= {this.state.pokemon} />  
+              <PokeList isLoading={this.state.isLoading} pokemons= {this.state.pokemon} />  
             </main>
         )
     }
