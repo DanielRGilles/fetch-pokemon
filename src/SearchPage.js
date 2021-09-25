@@ -5,7 +5,7 @@ import PokeList from './components/PokeList';
 import Header from './components/Header';
 import Sort from './components/Sort';
 import Search from './components/Search';
-import Dropdown from './components/Dropdown';
+
 
 export default class SearchPage extends Component {
    state = {
