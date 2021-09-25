@@ -10,8 +10,13 @@
   border: ridge 2px black;
   align-items: center;
   margin-bottom: 10px;
+  text-decoration: none;
+}
+.detailed {
+  justify-content: center;
 }
 .poke-cnt > form {
+  display: flex;
   justify-self: center;
   
 }
@@ -60,7 +65,7 @@ body {
 .pokemon {
   width: fit-content;
   height: fit-content;
-  max-width: 75%;
+  max-width: 80%;
   border: ridge 1px black;
   justify-self: center;
   margin: 5px;
@@ -70,6 +75,10 @@ body {
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   
+}
+
+.position-pokemon {
+  margin-left: 35%;
 }
 .grass {
   background-color: lightgreen;
@@ -129,7 +138,10 @@ body {
 
 }
 
-
+.home-img {
+  width: 100vw;
+  height: 100vh;
+}
 
 .pokemon > img {
   justify-content: center;
@@ -141,6 +153,7 @@ body {
   padding: 5px;
   font-weight: bold;
   height: fit-content;
+  
   
 }
 .poke-pic {
@@ -158,6 +171,15 @@ body {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+.load-ing-det {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  animation: rotation 400ms;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
 @media only screen and (max-width: 999px) {
   .poke-mon  {
     display: flex;
@@ -166,7 +188,12 @@ body {
     width: 100vw;
   }
   .pokemon {
-    max-width: 25%;
+    max-width: 55%;
+    min-width: 25%;
+
+  }
+  a:-webkit-any-link {
+    text-decoration: none;
   }
   .search-box {
   width: fit-content;

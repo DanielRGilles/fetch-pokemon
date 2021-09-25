@@ -47,13 +47,12 @@ export default class SearchPage extends Component {
   
         
     render() {
-        console.log(this.state.pokemon)
+        
         return (
             <main className='poke-cnt'>
-              <Header/>
+              <a href='./'><Header/></a>
             <section className='search-box'>
-              <Search handleSubmit={this.handleSubmit} placeholder={`Search by ${this.state.typeQ}`} handleChange={this.handleChange} />
-              <Dropdown handleChange={this.handleTypeChange} value={this.state.typeQ} options={['pokemon','type_1',]} />
+              <Search handleSubmit={this.handleSubmit} placeholder={`Search by ${this.state.typeQ}`} handleChange={this.handleChange} handleTypeChange={this.handleTypeChange}/>
               <Sort handleOrderChange={this.handleOrderChange} sortOrder={this.state.sortOrder} pokePerpage={this.state.pokePerpage} handleQuantityChange={this.handleQuantityChange}/>
             </section>
               <PokeList isLoading={this.state.isLoading} pokemons= {this.state.pokemon} />  
