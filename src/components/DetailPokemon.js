@@ -7,8 +7,8 @@ export default class DetailPokemon extends Component {
             <>
                 { this.props.isLoading
                 ? <img className='load-ing-det' src='../pokeball.png' alt='pokeball'/>
-                : <div className='pokemon-neem'>{this.props.details.pokemon}  
-                <img className='poke-pic'src={this.props.details.url_image} alt={this.props.details.pokemon}/>  
+                : <div> <div className='title-parent'><h3 className='pokemon-title'>{this.props.details.pokemon.toUpperCase()}</h3></div> 
+                <div className='image-parent'><img className='poke-pic'src={this.props.details.url_image} alt={this.props.details.pokemon}/></div>  
                 <div className='pokemon-deets'>Type:{this.props.details.type_1}</div>
                  <div className='pokemon-deets'>Attack:{this.props.details.attack}</div>
                  <div className='pokemon-deets'>SP. Attack:{this.props.details.special_attack}</div>

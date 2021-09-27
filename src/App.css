@@ -40,11 +40,20 @@ body {
    height: fit-content;
 
 }
-
+.title-parent {
+ display: flex;
+  font-size: 1.5rem;
+ justify-content: center;
+ align-self: center;
+ padding: 5px;
+ 
+}
 .pokemon-neem {
+  width: 100%;
   font-size: large;
   text-transform: uppercase;
   font-weight: bold;
+  justify-self: start;
 }
 
 .nav-link {
@@ -76,9 +85,14 @@ body {
   border-top-left-radius: 15px;
   
 }
-
+.detailed {
+  display: flex;
+  justify-content: center;
+}
 .position-pokemon {
-  margin-left: 35%;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
 }
 .grass {
   background-color: lightgreen;
@@ -158,9 +172,13 @@ body {
 }
 .poke-pic {
   width: 50%;
-  height: 50%;
+  height: 55%;
   justify-self: center;
-  margin-left: 25%;
+  
+}
+.image-parent {
+  display: flex;
+  justify-content: center;
 }
 .poke-pic:hover { 
   transform: scale(115%);

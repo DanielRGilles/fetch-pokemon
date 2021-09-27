@@ -14,7 +14,8 @@ export default class SearchPage extends Component {
        pokemon: [],
        pokePerpage: '20',
        isLoading: true,
-       typeQ: 'pokemon'
+       typeQ: 'pokemon',
+       page: 1
    }
     componentDidMount = async () => {
          await this.fetchData();
@@ -31,18 +32,30 @@ export default class SearchPage extends Component {
     handleOrderChange = (e) => {
         this.setState({ sortOrder: e.target.value });    
     } 
-
+    handleNextPageChange = async () => {
+       await this.setState((prevState) =>  ({page: prevState.page +1 }))
+        console.log(this.state.page)
+       await this.fetchData();
+    } 
+    handlePreviousPageChange = async (e) => {
+       if(this.state.page > 1) { this.setState((prevState) =>  ({page: prevState.page -1 }))}
+       else alert('This is the first page')
+        await this.fetchData();
+        console.log(this.state.page)
+    }
     handleSubmit = async (e) => {
             e.preventDefault();
-        await this.fetchData();
+
+        await this.setState({page: 1}) 
+        this.fetchData();
     }
     handleTypeSubmit = async (e) => {
             e.preventDefault();
         await this.fetchData();
     }  
     fetchData = async() => {
-            const search = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${this.state.typeQ}=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}page=1&perPage=${this.state.pokePerpage}`)
-            this.setState({ pokemon: search.body.results, isLoading: false});
+            const search = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${this.state.typeQ}=${this.state.query}&sort=pokemon&direction=${this.state.sortOrder}&page=${this.state.page}&perPage=${this.state.pokePerpage}`)
+            this.setState({ pokemon: search.body.results, isLoading: false });
     }
   
         
@@ -50,10 +63,10 @@ export default class SearchPage extends Component {
         
         return (
             <main className='poke-cnt'>
-              <a href='./'><Header/></a>
+              <Header/>
             <section className='search-box'>
               <Search handleSubmit={this.handleSubmit} placeholder={`Search by ${this.state.typeQ}`} handleChange={this.handleChange} handleTypeChange={this.handleTypeChange}/>
-              <Sort handleOrderChange={this.handleOrderChange} sortOrder={this.state.sortOrder} pokePerpage={this.state.pokePerpage} handleQuantityChange={this.handleQuantityChange}/>
+              <Sort pokemon={this.state.pokemon}handlePreviousPageChange={this.handlePreviousPageChange} handleNextPageChange={this.handleNextPageChange}  handleOrderChange={this.handleOrderChange} sortOrder={this.state.sortOrder} pokePerpage={this.state.pokePerpage} page={this.state.page}handleQuantityChange={this.handleQuantityChange}/>
             </section>
               <PokeList isLoading={this.state.isLoading} pokemons= {this.state.pokemon} />  
             </main>
