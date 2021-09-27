@@ -162,6 +162,9 @@ body {
   justify-self: center;
   margin-left: 25%;
 }
+.poke-pic:hover { 
+  transform: scale(115%);
+}
 .load-ing {
   position: fixed;
   top: 50%;
