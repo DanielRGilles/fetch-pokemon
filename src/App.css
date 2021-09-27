@@ -49,6 +49,9 @@ body {
  
 }
 .pokemon-neem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   font-size: large;
   text-transform: uppercase;
@@ -213,6 +216,11 @@ body {
     min-width: 25%;
 
   }
+  .poke-mon{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+  }
   
   .search-box {
   width: fit-content;
@@ -249,6 +257,11 @@ body {
 .search-box > label {
   padding: 0;
   
+}
+.poke-mon {
+  display: flex;
+  justify-items: center;
+  align-self: center;
 }
 }
 
